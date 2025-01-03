@@ -1,7 +1,84 @@
+import java.util.Objects;
+
 public class Jedi {
     private String name;
     private Rank rank;
     private int age;
     private String color;
     private double power;
+
+    public Jedi(String name, Rank rank, int age, String color, double power) {
+        this.name = name;
+        this.rank = rank;
+        this.age = age;
+        this.color = color;
+        this.power = power;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Rank getRank() {
+        return rank;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public double getPower() {
+        return power;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRank(Rank rank) {
+        this.rank = rank;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public void setPower(double power) {
+        this.power = power;
+    }
+
+    @Override
+    public final boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Jedi jedi)) return false;
+
+        return Objects.equals(name, jedi.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(name);
+    }
+
+    public void promoteJedi(double multiplier){
+        this.setRank(getRank().next());
+        double raisedPower = getPower();
+        raisedPower+=getPower()*multiplier;
+        setPower(raisedPower);
+    }
+
+    public void demoteJedi(double multiplier){
+        this.setRank(getRank().previous());
+        double loweredPower = getPower();
+        loweredPower -=getPower()*multiplier;
+        setPower(loweredPower);
+    }
 }
