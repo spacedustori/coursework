@@ -9,6 +9,10 @@ public class Jedi implements Comparable<Jedi> {
     private String color;
     private double power;
 
+    public Jedi(String name) {
+        this.name = name;
+    }
+
     public Jedi(String name, Rank rank, int age, String color, double power) {
         this.name = name;
         this.rank = rank;

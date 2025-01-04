@@ -15,6 +15,25 @@ public class Planet {
         return name;
     }
 
+    public Set<Jedi> getJedis() {
+        return jedis;
+    }
+
+    @Override
+    public final boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Planet planet)) return false;
+
+        return Objects.equals(getName(), planet.getName()) && Objects.equals(jedis, planet.jedis);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hashCode(getName());
+        result = 31 * result + Objects.hashCode(jedis);
+        return result;
+    }
+
     public boolean addJedi(Jedi jedi) {
         return jedis.add(jedi);
     }
@@ -23,8 +42,18 @@ public class Planet {
         return jedis.remove(jedi);
     }
 
-    @Override
     public String toString() {
+        List<Jedi> sortedList = new ArrayList<>(jedis);
+        sortedList.sort(null);
+        Iterator<Jedi> iterator = sortedList.iterator();
+        StringBuilder sb = new StringBuilder("Planet ").append(name).append(":\n");
+        while (iterator.hasNext()){
+            sb.append(iterator.next().toString());
+        }
+        return sb.toString();
+    }
+
+    public String print() {
         List<Jedi> sortedList = new ArrayList<>(jedis);
         sortedList.sort(new NameAndRankComparator());
         Iterator<Jedi> iterator = sortedList.iterator();
