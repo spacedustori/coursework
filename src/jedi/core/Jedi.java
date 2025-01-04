@@ -1,6 +1,8 @@
+package jedi.core;
+
 import java.util.Objects;
 
-public class Jedi {
+public class Jedi implements Comparable<Jedi> {
     private String name;
     private Rank rank;
     private int age;
@@ -80,5 +82,15 @@ public class Jedi {
         double loweredPower = getPower();
         loweredPower -=getPower()*multiplier;
         setPower(loweredPower);
+    }
+
+    @Override
+    public String toString() {
+        return "Jedi:" + "name -> " + name +", rank -> " + rank + ", age ->" + age + ", color -> " + color + ", power = " + power;
+    }
+
+    @Override
+    public int compareTo(Jedi o) {
+        return this.name.compareTo(o.name);
     }
 }
