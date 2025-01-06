@@ -93,7 +93,6 @@ public class Jedi implements Comparable<Jedi> {
             double loweredPower = getPower();
             loweredPower-=power*multiplier;
             setPower(loweredPower);
-
     }
 
     @Override

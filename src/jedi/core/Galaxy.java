@@ -3,7 +3,25 @@ package jedi.core;
 import java.util.*;
 
 public class Galaxy {
+    private String containingFile;
     private List<Planet> planets;
+
+    public Galaxy(String containingFile) {
+        this.containingFile = containingFile;
+        planets = new ArrayList<>();
+    }
+
+    public String getContainingFile() {
+        return containingFile;
+    }
+
+    public void setContainingFile(String containingFile) {
+        this.containingFile = containingFile;
+    }
+
+    public List<Planet> getPlanets() {
+        return planets;
+    }
 
     public void addPlanet(String planetName){
         planets.add(new Planet(planetName));
