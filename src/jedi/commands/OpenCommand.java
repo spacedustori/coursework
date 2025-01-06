@@ -1,16 +1,45 @@
 package jedi.commands;
 
-import jedi.core.Galaxy;
+import jedi.core.*;
+
+import java.io.*;
+import java.util.Scanner;
 
 public class OpenCommand implements Command {
-    private String fileName;
+    private String filePath;
 
-    public OpenCommand(String fileName) {
-        this.fileName = fileName;
+    public OpenCommand(String filePath) {
+        this.filePath = filePath;
     }
 
     @Override
     public void execute(Galaxy galaxy) {
-
+        try {
+            File currentFile = new File(filePath);
+            galaxy.setContainingFile(filePath);
+            if(currentFile.createNewFile()){
+                System.out.println("New file has been created. Please add planets and jedi to your new galaxy.");
+            }
+            else {
+                Scanner scanner = new Scanner(currentFile);
+                while (scanner.hasNext()){
+                    String planetName = scanner.nextLine();
+                    galaxy.addPlanet(planetName);
+                    String currentLine = scanner.nextLine();
+                    while (!currentLine.equals("-")){
+                        Rank rank = Rank.valueOf(scanner.nextLine().toUpperCase());
+                        int age = Integer.parseInt(scanner.nextLine());
+                        String color = scanner.nextLine();
+                        double strength = Double.parseDouble(scanner.nextLine());
+                        galaxy.createJedi(planetName,currentLine,rank,age,color,strength);
+                        currentLine=scanner.nextLine();
+                    }
+                }
+                scanner.close();
+                System.out.println("File information has been loaded.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error has occurred.");
+        }
     }
 }

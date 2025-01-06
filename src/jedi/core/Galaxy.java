@@ -34,7 +34,9 @@ public class Galaxy {
     public boolean createJedi(String planetName,String jediName,Rank jediRank,int age,String color,double strength){
         for (Planet currentPlanet : planets) {
             if (currentPlanet.getName().equals(planetName)) {
-                return currentPlanet.addJedi(new Jedi(jediName, jediRank, age, color, strength));
+                Jedi jedi = new Jedi(jediName, jediRank, age, color, strength);
+                jedi.setCurrentPlanet(currentPlanet.getName());
+                return currentPlanet.addJedi(jedi);
             }
         }
         return false;

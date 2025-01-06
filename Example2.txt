@@ -1,0 +1,34 @@
+Chugen
+Kodo Nalle
+grand_master
+65
+blue
+1005.3
+Nonis Pragon
+initiate
+24
+green
+103.6
+Hira're'arthis
+padawan
+28
+yellow
+253.6
+Kako
+grand_master
+72
+yellow
+1210.3
+-
+Siona
+On Dza'Lya
+knight
+34
+blue
+453.6
+Zala Dystra
+master
+38
+red
+799.2
+-

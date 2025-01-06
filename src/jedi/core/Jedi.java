@@ -8,6 +8,7 @@ public class Jedi implements Comparable<Jedi> {
     private int age;
     private String color;
     private double power;
+    private String currentPlanet;
 
     public Jedi(String name) {
         this.name = name;
@@ -59,6 +60,10 @@ public class Jedi implements Comparable<Jedi> {
 
     public void setPower(double power) {
         this.power = power;
+    }
+
+    public void setCurrentPlanet(String currentPlanet) {
+        this.currentPlanet = currentPlanet;
     }
 
     @Override

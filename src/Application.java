@@ -6,8 +6,7 @@ import java.util.*;
 public class Application {
     public static void main(String[] args) {
         boolean end = false;
-        Galaxy galaxy = new Galaxy("a.txt");
-
+        Galaxy galaxy = new Galaxy(null);
         System.out.println("Welcome to this app!");
         while (!end){
             System.out.println("What do you wish to do?");
