@@ -14,7 +14,12 @@ public class RemoveJediCommand implements Command {
     @Override
     public void execute(Galaxy galaxy) {
         if(galaxy.getContainingFile()!=null){
-            galaxy.removeJedi(jediName,planetName);
+            if(galaxy.removeJedi(jediName,planetName)){
+                System.out.println("The jedi has successfully been removed from planet "+planetName+"!");
+            }
+            else {
+                System.out.println("This jedi isn't currently on "+planetName+". Try print_jedi to find out their current residence.");
+            }
         }
         else {
             throw new CommandException("This command is currently unavailable.");

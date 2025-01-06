@@ -12,7 +12,7 @@ public class PrintPlanetCommand implements Command {
     @Override
     public void execute(Galaxy galaxy) {
         if(galaxy.getContainingFile()!=null){
-
+            System.out.println(galaxy.printPlanet(planetName));
         }
         else {
             throw new CommandException("This command is currently unavailable.");

@@ -31,8 +31,8 @@ public class CommandFactory {
             possibleCommands.put("remove_jedi",new RemoveJediCommand(commandInfo.get(1),commandInfo.get(2)));
             possibleCommands.put("+",new PrintTwoPlanetsCommand(commandInfo.getFirst(),commandInfo.get(2)));
         }
-        else if(commandInfo.size()==6) {
-            possibleCommands.put("create_jedi",new CreateJediCommand(commandInfo.get(1),commandInfo.get(2),commandInfo.get(3),commandInfo.get(4),commandInfo.get(5)));
+        else if(commandInfo.size()==7) {
+            possibleCommands.put("create_jedi",new CreateJediCommand(commandInfo.get(1),commandInfo.get(2),commandInfo.get(3),commandInfo.get(4),commandInfo.get(5),commandInfo.get(6)));
         }
         else {
             throw new CommandException("Invalid number of command parameters!");

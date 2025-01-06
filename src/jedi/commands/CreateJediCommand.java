@@ -10,7 +10,8 @@ public class CreateJediCommand implements Command {
     private String saberColor;
     private double jediStrength;
 
-    public CreateJediCommand(String jediName, String jediRank, String jediAge, String saberColor, String jediStrength) throws IllegalArgumentException {
+    public CreateJediCommand(String planetName,String jediName, String jediRank, String jediAge, String saberColor, String jediStrength) throws IllegalArgumentException {
+        this.planetName = planetName;
         this.jediName = jediName;
         this.jediRank = Rank.valueOf(jediRank.toUpperCase());
         this.jediAge = Integer.parseInt(jediAge);
@@ -18,34 +19,14 @@ public class CreateJediCommand implements Command {
         this.jediStrength = Double.parseDouble(jediStrength);
     }
 
-    public void setPlanetName(String planetName) {
-        this.planetName = planetName;
-    }
-
-    public void setJediName(String jediName) {
-        this.jediName = jediName;
-    }
-
-    public void setJediRank(Rank jediRank) {
-        this.jediRank = jediRank;
-    }
-
-    public void setJediAge(int jediAge) {
-        this.jediAge = jediAge;
-    }
-
-    public void setSaberColor(String saberColor) {
-        this.saberColor = saberColor;
-    }
-
-    public void setJediStrength(double jediStrength) {
-        this.jediStrength = jediStrength;
-    }
-
     @Override
-    public void execute(Galaxy galaxy) {
+    public void execute(Galaxy galaxy) throws CommandException {
         if(galaxy.getContainingFile()!=null){
-            galaxy.createJedi(planetName,jediName,jediRank,jediAge,saberColor,jediStrength);
+            if(galaxy.createJedi(planetName,jediName,jediRank,jediAge,saberColor,jediStrength)){
+                System.out.println(jediName + " has arrived on planet/moon "+planetName+"!");
+            }else {
+                System.out.println("This jedi is already somewhere else in the galaxy.");
+            }
         }
         else {
             throw new CommandException("This command is currently unavailable.");

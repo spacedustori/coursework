@@ -19,9 +19,16 @@ public class GetMostUsedSaberColorCommand implements Command {
     }
 
     @Override
-    public void execute(Galaxy galaxy) {
+    public void execute(Galaxy galaxy) throws JediMissingException,PlanetMissingException,CommandException {
+        String color;
         if(galaxy.getContainingFile()!=null){
-
+            if(defaultRank){
+                color = galaxy.getMostUsedSaberColor(planetName);
+            }
+            else {
+                color = galaxy.getMostUsedSaberColor(planetName,jediRank);
+            }
+            System.out.println("The most used saber color is "+color+".");
         }
         else {
             throw new CommandException("This command is currently unavailable.");

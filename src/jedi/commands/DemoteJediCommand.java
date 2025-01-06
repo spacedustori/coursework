@@ -1,6 +1,8 @@
 package jedi.commands;
 
 import jedi.core.Galaxy;
+import jedi.core.JediException;
+import jedi.core.RankException;
 
 public class DemoteJediCommand implements Command {
     private String jediName;
@@ -12,9 +14,9 @@ public class DemoteJediCommand implements Command {
     }
 
     @Override
-    public void execute(Galaxy galaxy) {
+    public void execute(Galaxy galaxy) throws RankException, JediException,CommandException {
         if(galaxy.getContainingFile()!=null){
-
+            galaxy.demoteJedi(jediName,multiplier);
         }
         else {
             throw new CommandException("This command is currently unavailable.");

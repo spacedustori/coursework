@@ -42,6 +42,15 @@ public class Planet {
         return jedis.remove(jedi);
     }
 
+    public Jedi findJedi(String jediName) throws JediMissingException{
+        for (Jedi j:jedis){
+            if(j.getName().equals(jediName)){
+                return j;
+            }
+        }
+        throw new JediMissingException("This jedi is not residing on the given planet/galaxy!");
+    }
+
     public String toString() {
         List<Jedi> sortedList = new ArrayList<>(jedis);
         sortedList.sort(null);
@@ -64,17 +73,17 @@ public class Planet {
         return sb.toString();
     }
 
-    public Jedi getStrongestJedi() throws PlanetException{
+    public String getStrongestJedi() throws JediMissingException {
         if(jedis.isEmpty()){
-            throw new PlanetException("There are no jedi on this planet!");
+            throw new JediMissingException("There are no jedi on this planet!");
         }
         List<Jedi> jediList = new ArrayList<>(jedis);
         jediList.sort(new PowerComparator());
         Iterator<Jedi> it = jediList.iterator();
-        return it.next();
+        return it.next().toString();
     }
 
-    public Jedi getYoungestJedi(Rank rank) throws PlanetException{
+    public Jedi getYoungestJedi(Rank rank) throws JediMissingException {
         List<Jedi> sortedList = new ArrayList<>();
         Iterator<Jedi> iterator = jedis.iterator();
         while (iterator.hasNext()){
@@ -84,7 +93,7 @@ public class Planet {
             }
         }
         if(sortedList.isEmpty()){
-            throw new PlanetException("There are no Jedi with this rank on the given planet!");
+            throw new JediMissingException("There are no Jedi with this rank on the given planet!");
         }
         sortedList.sort(new AgeComparator().reversed());
         iterator=sortedList.iterator();
@@ -110,28 +119,28 @@ public class Planet {
         return entryList.getFirst().toString();
     }
 
-    public String getMostUsedSaberColor() throws PlanetException{
+    public String getMostUsedSaberColor() throws JediMissingException {
         if(jedis.isEmpty()){
-            throw new PlanetException("There are no jedi on this planet!");
+            throw new JediMissingException("There are no jedi on this planet!");
         }
         List<Jedi> rankList = new ArrayList<>(jedis);
         Predicate<Jedi> rankRequirement = (i) -> i.getRank() != Rank.GRAND_MASTER;
         rankList.removeIf(rankRequirement);
         if(rankList.isEmpty()){
-            throw new PlanetException("There are no grand master jedi on this planet!");
+            throw new JediMissingException("There are no grand master jedi on this planet!");
         }
         return countColor(rankList);
     }
 
-    public String getMostUsedSaberColor(Rank rank){
+    public String getMostUsedSaberColor(Rank rank) throws JediMissingException{
         if(jedis.isEmpty()){
-            throw new PlanetException("There are no jedi on this planet!");
+            throw new JediMissingException("There are no jedi on this planet!");
         }
         List<Jedi> rankList = new ArrayList<>(jedis);
         Predicate<Jedi> rankRequirement = (i) -> i.getRank() !=rank;
         rankList.removeIf(rankRequirement);
         if(rankList.isEmpty()){
-            throw new PlanetException("There are no jedi of the given rank on this planet!");
+            throw new JediMissingException("There are no jedi of the given rank on this planet!");
         }
         return countColor(rankList);
     }

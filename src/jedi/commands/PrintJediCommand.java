@@ -12,7 +12,7 @@ public class PrintJediCommand implements Command {
     @Override
     public void execute(Galaxy galaxy) {
         if(galaxy.getContainingFile()!=null){
-
+            System.out.println("Information on the given jedi: "+galaxy.printJedi(jediName));
         }
         else {
             throw new CommandException("This command is currently unavailable.");

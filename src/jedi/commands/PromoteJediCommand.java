@@ -1,6 +1,8 @@
 package jedi.commands;
 
 import jedi.core.Galaxy;
+import jedi.core.JediException;
+import jedi.core.RankException;
 
 public class PromoteJediCommand implements Command {
     private String jediName;
@@ -12,13 +14,12 @@ public class PromoteJediCommand implements Command {
     }
 
     @Override
-    public void execute(Galaxy galaxy) {
+    public void execute(Galaxy galaxy) throws RankException, JediException,CommandException {
         if(galaxy.getContainingFile()!=null){
-
+            galaxy.promoteJedi(jediName,multiplier);
         }
         else {
             throw new CommandException("This command is currently unavailable.");
         }
-
     }
 }

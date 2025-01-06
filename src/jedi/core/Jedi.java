@@ -10,10 +10,6 @@ public class Jedi implements Comparable<Jedi> {
     private double power;
     private String currentPlanet;
 
-    public Jedi(String name) {
-        this.name = name;
-    }
-
     public Jedi(String name, Rank rank, int age, String color, double power) {
         this.name = name;
         this.rank = rank;
@@ -42,20 +38,8 @@ public class Jedi implements Comparable<Jedi> {
         return power;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setRank(Rank rank) {
         this.rank = rank;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
     }
 
     public void setPower(double power) {
@@ -89,7 +73,6 @@ public class Jedi implements Comparable<Jedi> {
             setPower(raisedPower);
         }
 
-
     public void demoteJedi(double multiplier) throws RankException,JediException{
             this.setRank(getRank().previous());
             if(multiplier<=0){
@@ -102,7 +85,7 @@ public class Jedi implements Comparable<Jedi> {
 
     @Override
     public String toString() {
-        return "Jedi:" + "name -> " + name +", rank -> " + rank + ", age ->" + age + ", color -> " + color + ", power = " + power;
+        return "Jedi:" + "name -> " + name +", rank -> " + rank + ", age ->" + age + ", color -> " + color + ", power = " + power+", currently on "+currentPlanet;
     }
 
     @Override
