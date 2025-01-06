@@ -74,18 +74,26 @@ public class Jedi implements Comparable<Jedi> {
         return Objects.hashCode(name);
     }
 
-    public void promoteJedi(double multiplier){
-        this.setRank(getRank().next());
-        double raisedPower = getPower();
-        raisedPower+=getPower()*multiplier;
-        setPower(raisedPower);
-    }
+    public void promoteJedi(double multiplier) throws RankException,JediException{
+            this.setRank(getRank().next());
+            if(multiplier<=0){
+                throw new JediException("Power multiplier must be a positive number!");
+            }
+            double raisedPower = getPower();
+            raisedPower+=power*multiplier;
+            setPower(raisedPower);
+        }
 
-    public void demoteJedi(double multiplier){
-        this.setRank(getRank().previous());
-        double loweredPower = getPower();
-        loweredPower -=getPower()*multiplier;
-        setPower(loweredPower);
+
+    public void demoteJedi(double multiplier) throws RankException,JediException{
+            this.setRank(getRank().previous());
+            if(multiplier<=0){
+            throw new JediException("Power multiplier must be a positive number!");
+            }
+            double loweredPower = getPower();
+            loweredPower-=power*multiplier;
+            setPower(loweredPower);
+
     }
 
     @Override

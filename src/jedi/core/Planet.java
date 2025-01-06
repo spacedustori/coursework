@@ -64,14 +64,17 @@ public class Planet {
         return sb.toString();
     }
 
-    public Jedi getStrongestJedi(){
+    public Jedi getStrongestJedi() throws PlanetException{
+        if(jedis.isEmpty()){
+            throw new PlanetException("There are no jedi on this planet!");
+        }
         List<Jedi> jediList = new ArrayList<>(jedis);
         jediList.sort(new PowerComparator());
         Iterator<Jedi> it = jediList.iterator();
         return it.next();
     }
 
-    public Jedi getYoungestJedi(Rank rank){
+    public Jedi getYoungestJedi(Rank rank) throws PlanetException{
         List<Jedi> sortedList = new ArrayList<>();
         Iterator<Jedi> iterator = jedis.iterator();
         while (iterator.hasNext()){
@@ -79,6 +82,9 @@ public class Planet {
             if(currentJedi.getRank()==rank){
                 sortedList.add(currentJedi);
             }
+        }
+        if(sortedList.isEmpty()){
+            throw new PlanetException("There are no Jedi with this rank on the given planet!");
         }
         sortedList.sort(new AgeComparator().reversed());
         iterator=sortedList.iterator();
@@ -104,17 +110,29 @@ public class Planet {
         return entryList.getFirst().toString();
     }
 
-    public String getMostUsedSaberColor(){
+    public String getMostUsedSaberColor() throws PlanetException{
+        if(jedis.isEmpty()){
+            throw new PlanetException("There are no jedi on this planet!");
+        }
         List<Jedi> rankList = new ArrayList<>(jedis);
         Predicate<Jedi> rankRequirement = (i) -> i.getRank() != Rank.GRAND_MASTER;
         rankList.removeIf(rankRequirement);
+        if(rankList.isEmpty()){
+            throw new PlanetException("There are no grand master jedi on this planet!");
+        }
         return countColor(rankList);
     }
 
     public String getMostUsedSaberColor(Rank rank){
+        if(jedis.isEmpty()){
+            throw new PlanetException("There are no jedi on this planet!");
+        }
         List<Jedi> rankList = new ArrayList<>(jedis);
         Predicate<Jedi> rankRequirement = (i) -> i.getRank() !=rank;
         rankList.removeIf(rankRequirement);
+        if(rankList.isEmpty()){
+            throw new PlanetException("There are no jedi of the given rank on this planet!");
+        }
         return countColor(rankList);
     }
 }

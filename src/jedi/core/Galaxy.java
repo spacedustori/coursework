@@ -1,16 +1,9 @@
 package jedi.core;
 
-// supposed to store info of the planets that'd be saved on the file; might remain unused
-
 import java.util.*;
 
 public class Galaxy {
-    private String name;
     private List<Planet> planets;
-
-    public Galaxy(String name) {
-        this.name = name;
-    }
 
     public void addPlanet(String planetName){
         planets.add(new Planet(planetName));
