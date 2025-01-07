@@ -3,7 +3,7 @@ import jedi.core.Galaxy;
 
 import java.util.*;
 
-public class Application {
+public class JediApplication {
     public static void main(String[] args) {
         boolean end = false;
         Galaxy galaxy = new Galaxy(null);
