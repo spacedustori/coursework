@@ -1,34 +1,41 @@
 Chugen
-Kodo Nalle
-grand_master
-65
-blue
-1005.3
 Nonis Pragon
-initiate
+PADAWAN
 24
 green
-103.6
-Hira're'arthis
-padawan
-28
-yellow
-253.6
+134.68
 Kako
-grand_master
+GRAND_MASTER
 72
 yellow
 1210.3
+Hira're'arthis
+PADAWAN
+28
+yellow
+253.6
+Kodo Nalle
+GRAND_MASTER
+65
+blue
+1005.3
+Nora Lynndor
+PADAWAN
+26
+green
+121.52
 -
 Siona
 On Dza'Lya
-knight
+KNIGHT
 34
 blue
 453.6
-Zala Dystra
-master
-38
-red
-799.2
+-
+Borgsen
+Leandra
+KNIGHT
+28
+blue
+550.3
 -

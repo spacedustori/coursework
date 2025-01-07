@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 public class Planet {
     private String name;
     private Set<Jedi> jedis = new HashSet<>();
+    private static final String newLine = System.lineSeparator();
 
     public Planet(String name) {
         this.name = name;
@@ -55,9 +56,9 @@ public class Planet {
         List<Jedi> sortedList = new ArrayList<>(jedis);
         sortedList.sort(null);
         Iterator<Jedi> iterator = sortedList.iterator();
-        StringBuilder sb = new StringBuilder("Planet ").append(name).append(":\n");
+        StringBuilder sb = new StringBuilder("Planet ").append(name).append(":").append(newLine);
         while (iterator.hasNext()){
-            sb.append(iterator.next().toString());
+            sb.append(iterator.next().toString()).append(newLine);
         }
         return sb.toString();
     }
@@ -66,9 +67,9 @@ public class Planet {
         List<Jedi> sortedList = new ArrayList<>(jedis);
         sortedList.sort(new NameAndRankComparator());
         Iterator<Jedi> iterator = sortedList.iterator();
-        StringBuilder sb = new StringBuilder("Planet ").append(name).append(":\n");
+        StringBuilder sb = new StringBuilder("Planet ").append(name).append(":").append(newLine);
         while (iterator.hasNext()){
-            sb.append(iterator.next().toString());
+            sb.append(iterator.next().toString()).append(newLine);
         }
         return sb.toString();
     }
@@ -78,7 +79,7 @@ public class Planet {
             throw new JediMissingException("There are no jedi on this planet!");
         }
         List<Jedi> jediList = new ArrayList<>(jedis);
-        jediList.sort(new PowerComparator());
+        jediList.sort(new PowerComparator().reversed());
         Iterator<Jedi> it = jediList.iterator();
         return it.next().toString();
     }
@@ -95,12 +96,19 @@ public class Planet {
         if(sortedList.isEmpty()){
             throw new JediMissingException("There are no Jedi with this rank on the given planet!");
         }
-        sortedList.sort(new AgeComparator().reversed());
+        sortedList.sort(new AgeComparator());
         iterator=sortedList.iterator();
         return iterator.next();
     }
 
-    private String countColor(List<Jedi> rankList){
+    private String countColor(List<Jedi> rankList,boolean defaultSort){
+        Set<Jedi> jedis;
+        if(defaultSort){
+            jedis = this.jedis;
+        }
+        else {
+            jedis = new HashSet<>(rankList);
+        }
         Iterator<Jedi> iterator = rankList.iterator();
         Map<String, Integer> countColors = new HashMap<>();
         while (iterator.hasNext()){
@@ -116,7 +124,7 @@ public class Planet {
         }
         List<Map.Entry<String,Integer>> entryList = new ArrayList<>(countColors.entrySet());
         entryList.sort(Map.Entry.comparingByValue());
-        return entryList.getFirst().toString();
+        return entryList.getLast().toString();
     }
 
     public String getMostUsedSaberColor() throws JediMissingException {
@@ -129,7 +137,7 @@ public class Planet {
         if(rankList.isEmpty()){
             throw new JediMissingException("There are no grand master jedi on this planet!");
         }
-        return countColor(rankList);
+        return countColor(rankList,true);
     }
 
     public String getMostUsedSaberColor(Rank rank) throws JediMissingException{
@@ -142,6 +150,6 @@ public class Planet {
         if(rankList.isEmpty()){
             throw new JediMissingException("There are no jedi of the given rank on this planet!");
         }
-        return countColor(rankList);
+        return countColor(rankList,false);
     }
 }

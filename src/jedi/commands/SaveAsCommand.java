@@ -43,6 +43,7 @@ public class SaveAsCommand implements Command{
                 }
                 writer.close();
             }
+            System.out.println("The file has been saved successfully!");
         } catch (IOException e) {
             System.out.println("An error has occurred.");
         }

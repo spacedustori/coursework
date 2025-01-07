@@ -9,6 +9,7 @@ public class Jedi implements Comparable<Jedi> {
     private String color;
     private double power;
     private String currentPlanet;
+    private static final String newLine = System.lineSeparator();
 
     public Jedi(String name, Rank rank, int age, String color, double power) {
         this.name = name;
@@ -85,7 +86,8 @@ public class Jedi implements Comparable<Jedi> {
 
     @Override
     public String toString() {
-        return "Jedi:" + "name -> " + name +", rank -> " + rank + ", age ->" + age + ", color -> " + color + ", power = " + power+", currently on "+currentPlanet;
+        return "name -> " + name +", rank -> " + rank + ", age -> " + age + ',' + newLine
+                + "power = " + power+ ", saber color -> " + color + ", currently on "+currentPlanet;
     }
 
     @Override

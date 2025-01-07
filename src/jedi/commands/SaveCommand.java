@@ -25,6 +25,7 @@ public class SaveCommand implements Command {
                 writer.write("-"+newLine);
             }
             writer.close();
+            System.out.println("The file has been saved successfully!");
         } catch (IOException e) {
             System.out.println("An error has occurred.");
         }

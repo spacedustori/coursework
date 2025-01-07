@@ -7,7 +7,7 @@ public class JediApplication {
     public static void main(String[] args) {
         boolean end = false;
         Galaxy galaxy = new Galaxy(null);
-        System.out.println("Welcome to this app!");
+        System.out.println("Welcome to this jedi database system!");
         while (!end){
             System.out.println("What do you wish to do?");
             Scanner input = new Scanner(System.in);
@@ -24,7 +24,10 @@ public class JediApplication {
                     CommandFactory factory = new CommandFactory(Arrays.stream(commandInfo).toList());
                     Command command = factory.create();
                     command.execute(galaxy);
-                } catch (Exception e) {
+                } catch (IndexOutOfBoundsException | NullPointerException | IllegalArgumentException e) {
+                    System.out.println("Command format not followed.");
+                }
+                catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
             }

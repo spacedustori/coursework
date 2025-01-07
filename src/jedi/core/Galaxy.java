@@ -5,6 +5,7 @@ import java.util.*;
 public class Galaxy {
     private String containingFile;
     private List<Planet> planets;
+    private static final String newLine = System.lineSeparator();
 
     public Galaxy(String containingFile) {
         this.containingFile = containingFile;
@@ -110,6 +111,6 @@ public class Galaxy {
     public String print(String planetNameA,String planetNameB){
         Planet planetA = findPlanet(planetNameA);
         Planet planetB = findPlanet(planetNameB);
-        return planetA + "/n/n" + planetB;
+        return planetA + newLine + planetB;
     }
 }

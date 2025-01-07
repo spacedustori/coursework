@@ -18,7 +18,7 @@ public class HelpCommand implements Command {
             System.out.println("""
                 add_planet <planet_name>    adds new planet
                 create_jedi <planet_name> <jedi_name> <jedi_rank> <jedi_age> <saber_color> <jedi_strength>    creates jedi with specified parameters, if possible
-                removeJedi <jedi_name> <planet_name>    removes the specified jedi
+                remove_jedi <jedi_name> <planet_name>    removes the specified jedi
                 promote_jedi <jedi_name> <multiplier>     promotes jedi by one rank and increases their strength. multiplier must be positive, grand_master is the highest rank
                 demote_jedi <jedi_name> <multiplier>   demotes jedi by one rank and lowers their strength. multiplier must be positive, youngling is the lowest rank
                 get_strongest_jedi <planet_name>     gives information about the strongest jedi on a given planet

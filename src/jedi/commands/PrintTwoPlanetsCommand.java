@@ -14,7 +14,7 @@ public class PrintTwoPlanetsCommand implements Command {
     @Override
     public void execute(Galaxy galaxy) {
         if(galaxy.getContainingFile()!=null){
-            System.out.println("Information on the two planet\n"+galaxy.print(planetA,planetB));
+            System.out.println("Information on the two planets\n"+galaxy.print(planetA,planetB));
         }
         else {
             throw new CommandException("This command is currently unavailable.");

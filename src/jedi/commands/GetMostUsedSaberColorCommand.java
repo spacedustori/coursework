@@ -29,7 +29,7 @@ public class GetMostUsedSaberColorCommand implements Command {
                 Rank jediRank = Rank.valueOf(this.jediRank.toUpperCase());
                 color = galaxy.getMostUsedSaberColor(planetName,jediRank);
             }
-            System.out.println("The most used saber color is "+color+".");
+            System.out.println("The most used saber color for "+ this.jediRank.toLowerCase() + " is "+color+".");
         }
         else {
             throw new CommandException("This command is currently unavailable.");
