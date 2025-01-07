@@ -7,5 +7,6 @@ public class CloseCommand implements Command {
     public void execute(Galaxy galaxy) {
         galaxy.setContainingFile(null);
         galaxy.getPlanets().clear();
+        System.out.println("File closed!");
     }
 }

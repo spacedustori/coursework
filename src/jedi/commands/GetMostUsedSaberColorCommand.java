@@ -4,7 +4,7 @@ import jedi.core.*;
 
 public class GetMostUsedSaberColorCommand implements Command {
     private String planetName;
-    private Rank jediRank;
+    private String jediRank;
     private boolean defaultRank;
 
     public GetMostUsedSaberColorCommand(String planetName) {
@@ -12,9 +12,9 @@ public class GetMostUsedSaberColorCommand implements Command {
         defaultRank = true;
     }
 
-    public GetMostUsedSaberColorCommand(String planetName, String jediRank) {
+    public GetMostUsedSaberColorCommand(String planetName, String jediRank) throws IllegalArgumentException {
         this.planetName = planetName;
-        this.jediRank = Rank.valueOf(jediRank.toUpperCase());
+        this.jediRank = jediRank;
         defaultRank = false;
     }
 
@@ -26,6 +26,7 @@ public class GetMostUsedSaberColorCommand implements Command {
                 color = galaxy.getMostUsedSaberColor(planetName);
             }
             else {
+                Rank jediRank = Rank.valueOf(this.jediRank.toUpperCase());
                 color = galaxy.getMostUsedSaberColor(planetName,jediRank);
             }
             System.out.println("The most used saber color is "+color+".");

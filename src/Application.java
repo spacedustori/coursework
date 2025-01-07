@@ -12,13 +12,16 @@ public class Application {
             System.out.println("What do you wish to do?");
             Scanner input = new Scanner(System.in);
             String commandInput = input.nextLine();
-            String[] commandInfo = commandInput.split(" ");
+            String[] commandInfo = commandInput.split(" <|> ");
+            for (int i=0;i<commandInfo.length;i++){
+                commandInfo[i] = commandInfo[i].replaceAll("[<>]","");
+            }
 
             if (commandInfo[0].equals("exit")) {
                 end = true;
             } else {
-                CommandFactory factory = new CommandFactory(Arrays.stream(commandInfo).toList());
                 try {
+                    CommandFactory factory = new CommandFactory(Arrays.stream(commandInfo).toList());
                     Command command = factory.create();
                     command.execute(galaxy);
                 } catch (Exception e) {
