@@ -19,33 +19,39 @@ public class SaveAsCommand implements Command{
 
     @Override
     public void execute(Galaxy galaxy) {
-        String newLine = System.lineSeparator();
-        List<Planet> planets = galaxy.getPlanets();
-        try {
-            File newFile = new File(containingFile);
-            if(!newFile.createNewFile()){
-                System.out.println("This file already exists in the given directory. Please rename it or pick a different path.");
-            }
-            else {
-                galaxy.setContainingFile(containingFile);
-                FileWriter writer = new FileWriter(newFile);
-                for (Planet p:planets){
-                    Set<Jedi> jedis = p.getJedis();
-                    writer.write(p.getName()+newLine);
-                    for (Jedi j:jedis){
-                        writer.write(j.getName()+newLine);
-                        writer.write(j.getRank().toString()+newLine);
-                        writer.write(j.getAge()+newLine);
-                        writer.write(j.getColor()+newLine);
-                        writer.write(j.getPower()+newLine);
-                    }
-                    writer.write("-"+newLine);
+        if(galaxy.getContainingFile()!=null){
+            String newLine = System.lineSeparator();
+            List<Planet> planets = galaxy.getPlanets();
+            try {
+                File newFile = new File(containingFile);
+                if(!newFile.createNewFile()){
+                    System.out.println("This file already exists in the given directory. Please rename it or pick a different path.");
                 }
-                writer.close();
+                else {
+                    galaxy.setContainingFile(containingFile);
+                    FileWriter writer = new FileWriter(newFile);
+                    for (Planet p:planets){
+                        Set<Jedi> jedis = p.getJedis();
+                        writer.write(p.getName()+newLine);
+                        for (Jedi j:jedis){
+                            writer.write(j.getName()+newLine);
+                            writer.write(j.getRank().toString()+newLine);
+                            writer.write(j.getAge()+newLine);
+                            writer.write(j.getColor()+newLine);
+                            writer.write(j.getPower()+newLine);
+                        }
+                        writer.write("-"+newLine);
+                    }
+                    writer.close();
+                }
+                System.out.println("The file has been saved successfully!");
+            } catch (IOException e) {
+                System.out.println("An error has occurred.");
             }
-            System.out.println("The file has been saved successfully!");
-        } catch (IOException e) {
-            System.out.println("An error has occurred.");
         }
+        else {
+            throw new CommandException("This command is currently unavailable.");
+        }
+
     }
 }

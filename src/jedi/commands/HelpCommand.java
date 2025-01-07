@@ -9,13 +9,13 @@ public class HelpCommand implements Command {
         System.out.println("""
                 The following commands are supported:
                 open <file>    opens file
-                close    closes currently opened file
-                save     saves the currently open file
-                saveas   <file> saves the currently open file in <file>
                 help     prints this information
                 exit     exists the program""");
         if(galaxy.getContainingFile()!=null){
             System.out.println("""
+                close    closes currently opened file
+                save     saves the currently open file
+                saveas   <file> saves the currently open file in <file>
                 add_planet <planet_name>    adds new planet
                 create_jedi <planet_name> <jedi_name> <jedi_rank> <jedi_age> <saber_color> <jedi_strength>    creates jedi with specified parameters, if possible
                 remove_jedi <jedi_name> <planet_name>    removes the specified jedi

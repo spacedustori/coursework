@@ -5,8 +5,13 @@ import jedi.core.Galaxy;
 public class CloseCommand implements Command {
     @Override
     public void execute(Galaxy galaxy) {
-        galaxy.setContainingFile(null);
-        galaxy.getPlanets().clear();
-        System.out.println("File closed!");
+        if(galaxy.getContainingFile()!=null){
+            galaxy.setContainingFile(null);
+            galaxy.getPlanets().clear();
+            System.out.println("File closed!");
+        }
+        else {
+            throw new CommandException("This command is currently unavailable.");
+        }
     }
 }
