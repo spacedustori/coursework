@@ -6,16 +6,17 @@ import jedi.core.RankException;
 
 public class DemoteJediCommand implements Command {
     private String jediName;
-    private double multiplier;
+    private String multiplier;
 
     public DemoteJediCommand(String jediName, String multiplier) throws IllegalArgumentException {
         this.jediName = jediName;
-        this.multiplier = Double.parseDouble(multiplier);
+        this.multiplier = multiplier;
     }
 
     @Override
     public void execute(Galaxy galaxy) throws RankException, JediException,CommandException {
         if(galaxy.getContainingFile()!=null){
+            double multiplier = Double.parseDouble(this.multiplier);
             galaxy.demoteJedi(jediName,multiplier);
         }
         else {
