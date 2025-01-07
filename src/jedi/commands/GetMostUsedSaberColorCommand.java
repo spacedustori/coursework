@@ -12,14 +12,14 @@ public class GetMostUsedSaberColorCommand implements Command {
         defaultRank = true;
     }
 
-    public GetMostUsedSaberColorCommand(String planetName, String jediRank) throws IllegalArgumentException {
+    public GetMostUsedSaberColorCommand(String planetName, String jediRank) {
         this.planetName = planetName;
         this.jediRank = jediRank;
         defaultRank = false;
     }
 
     @Override
-    public void execute(Galaxy galaxy) throws JediMissingException,PlanetMissingException,CommandException {
+    public void execute(Galaxy galaxy) throws IllegalArgumentException,JediMissingException,PlanetMissingException,CommandException {
         String color;
         if(galaxy.getContainingFile()!=null){
             if(defaultRank){
